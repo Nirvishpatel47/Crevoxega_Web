@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeadGen AI Chat Widget | Automate Lead Capture for Small Business</title>
+    <style>
+        /* CSS Variables for Color Palette */
+        :root {
+            --primary-dark: rgb(33, 52, 72);
+            --primary-accent: rgb(84, 119, 146);
+            --secondary-accent: rgb(148, 180, 193);
+            --background-neutral: rgb(234, 224, 207);
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --spacing-unit: 1.5rem;
+            --spacing-unit-mobile: 1.2rem;
+        }
+
+        /* Base Styles - Mobile First */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--primary-dark);
+            background-color: var(--background-neutral);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Container - Mobile First with proper padding */
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: var(--spacing-unit-mobile) 1rem;
+        }
+
+        /* Typography - Optimized for mobile readability */
+        h1, h2 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-top: 0;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+        h1 {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        h2 {
+            font-size: 1.4rem;
+            color: var(--primary-accent);
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit-mobile) * 1.2);
+        }
+        p, li {
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+
+        /* Mobile Sticky CTA - Conversion Booster */
+        .sticky-cta-mobile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--primary-dark);
+            padding: 0.75rem 1rem;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: block;
+        }
+        .sticky-cta-mobile .cta-button {
+            margin: 0;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Buttons (CTA) - Touch-friendly sizing */
+        .cta-button {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            margin: var(--spacing-unit-mobile) auto 0;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--primary-accent);
+            color: var(--background-neutral);
+            text-decoration: none;
+            text-align: center;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .cta-button:hover,
+        .cta-button:active {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Separators - Reduced spacing on mobile */
+        .section-separator {
+            height: 1px;
+            background-color: var(--secondary-accent);
+            opacity: 0.5;
+            margin: calc(var(--spacing-unit-mobile) * 1.5) auto;
+            width: 80%;
+        }
+        .section {
+            padding: calc(var(--spacing-unit-mobile) * 1.2) 0;
+        }
+
+        /* Hero Section - Mobile optimized */
+        #hero .container {
+            text-align: center;
+            padding-top: calc(var(--spacing-unit-mobile) * 1.5);
+            padding-bottom: calc(var(--spacing-unit-mobile) * 2);
+        }
+        #hero .subheadline {
+            color: var(--primary-dark);
+            opacity: 0.85;
+            font-size: 1.05rem;
+            margin-bottom: var(--spacing-unit-mobile);
+        }
+        #hero .supporting-line {
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            margin-top: 0.75rem;
+            opacity: 0.7;
+        }
+
+        /* Problem Section */
+        #problem .bullet-list {
+            list-style: none;
+            padding: 0;
+        }
+        #problem .bullet-list li {
+            background-color: #fff;
+            border: 1px solid var(--secondary-accent);
+            padding: 1rem 1rem 1rem 3rem;
+            margin-bottom: 0.75rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        #problem .bullet-list li::before {
+            content: '❌';
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+        #problem .bullet-list li strong {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        /* Visual Impact Section */
+        #visual-impact {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid var(--secondary-accent);
+            border-bottom: 1px solid var(--secondary-accent);
+        }
+        .graph-container {
+            margin-bottom: calc(var(--spacing-unit-mobile) * 1.5);
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .graph-title {
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        .graph-caption {
+            font-size: 0.8rem;
+            text-align: center;
+            color: var(--primary-accent);
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        /* Graph 1: Lead Capture - Fixed for mobile */
+        .progress-bar-wrap {
+            height: 30px;
+            background-color: var(--background-neutral);
+            border: 1px solid var(--secondary-accent);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            transition: width 0.5s ease-out;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+        }
+        .bar-label-inside {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+        .graph-lead-capture .low {
+            width: 30%;
+            background-color: var(--secondary-accent);
+            justify-content: flex-start;
+        }
+        .graph-lead-capture .high {
+            width: 95%;
+            background-color: var(--primary-dark);
+            justify-content: flex-end;
+        }
+        .graph-lead-capture .high .bar-label-inside {
+            color: var(--background-neutral);
+        }
+        .bar-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: var(--primary-dark);
+        }
+
+        /* Graph 2: Response Time */
+        .bar-chart-wrap {
+            display: flex;
+            align-items: flex-end;
+            height: 120px;
+            gap: 15px;
+            padding: 0 10px;
+            border-bottom: 1px solid var(--secondary-accent);
+        }
+        .bar-item {
+            flex: 1;
+            background-color: var(--secondary-accent);
+            text-align: center;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            transition: height 0.5s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--background-neutral);
+            font-weight: 500;
+            padding: 0.5rem 0.25rem;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+        .bar-manual {
+            height: 70px;
+            background-color: var(--secondary-accent);
+        }
+        .bar-automated {
+            height: 110px;
+            background-color: var(--primary-dark);
+        }
+        .bar-labels-row {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            font-size: 0.75rem;
+            padding: 8px 0 0;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+        .bar-labels-row span {
+            flex: 1;
+        }
+
+        /* Graph 3: Customer Engagement */
+        .comparison-blocks {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+        }
+        .comparison-block {
+            flex: 1;
+            padding: 1rem 0.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--secondary-accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .comparison-block-before {
+            background-color: var(--background-neutral);
+            color: var(--primary-accent);
+            opacity: 0.7;
+        }
+        .comparison-block-after {
+            background-color: var(--primary-accent);
+            color: var(--background-neutral);
+            border-color: var(--primary-dark);
+        }
+        .comparison-block-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .comparison-arrow {
+            font-size: 1.5rem;
+            color: var(--primary-accent);
+            flex-shrink: 0;
+        }
+
+        /* Solution Section (Steps) */
+        .step {
+            background-color: #fff;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-accent);
+        }
+        .step h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .step p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Features & Why Choose Us */
+        .value-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 0.75rem;
+        }
+        .value-list li {
+            background-color: #fff;
+            padding: 0.875rem 1rem 0.875rem 2.75rem;
+            border-radius: 6px;
+            border: 1px solid var(--secondary-accent);
+            position: relative;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+        .value-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0.875rem;
+            top: 0.875rem;
+            font-size: 1rem;
+            line-height: 1;
+        }
+        .value-list li strong {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        /* Final CTA Section */
+        #final-cta {
+            text-align: center;
+            background-color: var(--primary-dark);
+            padding: calc(var(--spacing-unit-mobile) * 2) 1rem calc(var(--spacing-unit-mobile) * 2.5);
+        }
+        #final-cta h2 {
+            color: var(--background-neutral);
+            margin-bottom: 0.5rem;
+        }
+        #final-cta p {
+            color: var(--secondary-accent);
+            font-size: 1rem;
+            margin-bottom: var(--spacing-unit-mobile);
+        }
+        #final-cta .cta-button {
+            background-color: var(--background-neutral);
+            color: var(--primary-dark);
+        }
+        #final-cta .cta-button:hover,
+        #final-cta .cta-button:active {
+            background-color: var(--secondary-accent);
+        }
+        #final-cta .support-details {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--secondary-accent);
+            opacity: 0.8;
+        }
+
+        /* Tablet & Desktop Adjustments */
+        @media (min-width: 768px) {
+            :root {
+                --spacing-unit: 2rem;
+            }
+            
+            .container {
+                max-width: 768px;
+                padding: calc(var(--spacing-unit) * 1.5) 2rem;
+            }
+            
+            /* Hide mobile sticky CTA on desktop */
+            .sticky-cta-mobile {
+                display: none;
+            }
+            
+            #hero h1 {
+                font-size: 3rem;
+            }
+            #hero .subheadline {
+                font-size: 1.3rem;
+            }
+            h2 {
+                font-size: 2rem;
+                margin-bottom: calc(var(--spacing-unit) * 1.5);
+            }
+            .cta-button {
+                width: auto;
+                max-width: 320px;
+                display: inline-block;
+            }
+            .step-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: var(--spacing-unit);
+            }
+            .step {
+                margin-bottom: 0;
+            }
+            .value-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .graph-title {
+                font-size: 1.1rem;
+            }
+            .graph-caption {
+                font-size: 0.9rem;
+            }
+            .section-separator {
+                margin: calc(var(--spacing-unit) * 2.5) auto;
+            }
+            .section {
+                padding: calc(var(--spacing-unit) * 2) 0;
+            }
+            .bar-item {
+                font-size: 0.9rem;
+            }
+            .comparison-blocks {
+                gap: 10px;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 900px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mobile Sticky CTA (Hidden on Desktop) -->
+    <div class="sticky-cta-mobile">
+        <a href="https://crevoxega-1-501658036383.asia-south1.run.app" class="cta-button">Try Free Demo</a>
+    </div>
+
+    <section id="hero" class="section">
+        <div class="container">
+            <h1>Capture Every Lead, Automatically.</h1>
+            <p class="subheadline">Stop losing business to slow replies. Deploy our intelligent chat widget and let AI handle visitor questions, 24/7.</p>
+            <a href="https://crevoxega-1-501658036383.asia-south1.run.app" class="cta-button">Try Free Demo</a>
+            <p class="supporting-line">No credit card needed. Setup takes just minutes.</p>
+        </div>
+    </section>
+
+    <div class="section-separator"></div>
+
+    <section id="problem" class="section">
+        <div class="container">
+            <h2>The Pain of Manual Replies</h2>
+            <ul class="bullet-list">
+                <li><strong>You miss valuable leads</strong> because you're busy or closed for the day.</li>
+                <li><strong>You waste hours</strong> answering the same repetitive questions again and again.</li>
+                <li><strong>Visitors leave your site quickly</strong> when they can't get instant information.</li>
+                <li><strong>Leads go cold</strong> while waiting for a human email response.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="visual-impact" class="section">
+        <div class="container">
+            <h2>Estimated Impact</h2>
+            <p class="graph-caption">Illustrative example of potential improvement.</p>
+
+            <div class="graph-container graph-lead-capture">
+                <div class="graph-title">Lead Capture Effectiveness</div>
+
+                <div class="bar-title">Before (Manual)</div>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar low">
+                        <span class="bar-label-inside">Low</span>
+                    </div>
+                </div>
+
+                <div class="bar-title">After (Automated)</div>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar high">
+                        <span class="bar-label-inside">High</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="graph-container">
+                <div class="graph-title">Visitor Response Time Comparison</div>
+                <div class="bar-chart-wrap">
+                    <div class="bar-item bar-manual">Manual / Delayed</div>
+                    <div class="bar-item bar-automated">Automated / Instant</div>
+                </div>
+                <div class="bar-labels-row">
+                    <span>Before</span>
+                    <span>After</span>
+                </div>
+            </div>
+
+            <div class="graph-container">
+                <div class="graph-title">Visitor Interaction</div>
+                <div class="comparison-blocks">
+                    <div class="comparison-block comparison-block-before">
+                        <span class="comparison-block-icon">🚶</span>
+                        Low Engagement
+                    </div>
+                    <div class="comparison-arrow">→</div>
+                    <div class="comparison-block comparison-block-after">
+                        <span class="comparison-block-icon">💬</span>
+                        High Engagement
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="section-separator"></div>
+
+    <section id="solution" class="section">
+        <div class="container">
+            <h2>How It Works In 3 Simple Steps</h2>
+            <div class="step-grid">
+                <div class="step">
+                    <h3>1. Setup Your Knowledge</h3>
+                    <p>Tell the widget about your business. Copy-paste your website text, FAQs, or services list into the simple editor.</p>
+                </div>
+                <div class="step">
+                    <h3>2. Embed the Code</h3>
+                    <p>We give you one line of code to copy. Paste it into your website, and the chat widget instantly appears.</p>
+                </div>
+                <div class="step">
+                    <h3>3. Relax and Capture</h3>
+                    <p>The AI widget instantly answers questions, collects contact details, and notifies you when a human is needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-separator"></div>
+
+    <section id="features" class="section">
+        <div class="container">
+            <h2>Core Features Focused on Value</h2>
+            <ul class="value-list">
+                <li>Automated Q&A based on your business data.</li>
+                <li>Seamless lead capture form for follow-up.</li>
+                <li>Mobile-friendly chat interface for all devices.</li>
+                <li>Instant email notifications for new leads.</li>
+                <li>Customizable colors to match your brand.</li>
+                <li>Hand-off feature to switch to live chat.</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="section-separator"></div>
+
+    <section id="why-choose" class="section">
+        <div class="container">
+            <h2>Built for Small Business Owners</h2>
+            <ul class="value-list">
+                <li><strong>Zero technical skill required</strong> for setup and management.</li>
+                <li><strong>Works everywhere</strong>—desktop, tablet, and mobile browsers.</li>
+                <li><strong>Transparent, simple monthly pricing</strong> with no hidden fees.</li>
+                <li><strong>Cancel anytime</strong> with no lock-in contract.</li>
+                <li><strong>Reliable and fast performance</strong> with minimal site slowdown.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="final-cta">
+        <div class="container">
+            <h2>Ready to Stop Losing Leads?</h2>
+            <p>Try the full-featured AI chat widget demo completely free, and see the difference.</p>
+            <a href="https://crevoxega-1-501658036383.asia-south1.run.app" class="cta-button">Start Your Free Demo Today</a>
+            <p class="support-details">No Credit Card Required • Setup in Less Than 5 Minutes</p>
+        </div>
+    </section>
+<script src="https://crevoxega-1-501658036383.asia-south1.run.app/widget.js" data-client="XlD4nDm4TYqvnbA83qKJy44MNNnqsVrU5jYY2T1C9sY"></script>
+</body>
+</html>
